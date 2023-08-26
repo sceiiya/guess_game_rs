@@ -4,6 +4,7 @@ use std::cmp::Ordering;
 
 fn main() {
     println!("Guessinng Game! You have 8 attempts!");
+    println!("Guess a number between 1 to 100!");
     
     let secret_num = rand::thread_rng()
         .gen_range(1..100);
@@ -13,11 +14,24 @@ fn main() {
     loop {
         if limit == 8 {
             println!("Guessed 8 times, GAME OVER!");
-            break;
+            
+            println!("Play again? y/n");
+            let mut reset = String::new();
+
+            io::stdin()
+                .read_line(&mut reset)
+                .expect("Failed to read the line");
+
+            if reset.trim() == "y" {
+                limit = 0;
+                continue;
+            }else{
+                break;
+            }
         }
 
         let atmpt = 8 - limit; 
-        println!("Please Input your Number Bet! {atmpt} attempt left.");
+        println!("Please Input your Number to guess! {atmpt} attempt left.");
         limit += 1;
 
         let mut guess = String::new();
@@ -41,7 +55,20 @@ fn main() {
             Ordering::Greater => println!("Lower!"),
             Ordering::Equal => {
                 println!("You Just WON!");
-                break;
+                
+                println!("Play again? y/n");
+                let mut reset = String::new();
+
+                io::stdin()
+                    .read_line(&mut reset)
+                    .expect("Failed to read the line");
+
+                if reset.trim() == "y" {
+                    limit = 0;
+                    continue;
+                }else{
+                    break;
+                }
             },
         }
     }
