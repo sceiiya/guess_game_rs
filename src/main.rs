@@ -22,11 +22,15 @@ fn main() {
                 .read_line(&mut reset)
                 .expect("Failed to read the line");
 
-            if reset.trim() == "y" {
-                limit = 0;
-                continue;
-            }else{
-                break;
+            match reset.trim().to_lowercase().as_str() {
+                "yes" | "y" => {
+                    limit = 0;
+                    continue;
+                }
+                _ => {
+                    println!("Thank you for playing ありがとう！！　―sceiiya dev");
+                    break;
+                },
             }
         }
 
@@ -63,11 +67,21 @@ fn main() {
                     .read_line(&mut reset)
                     .expect("Failed to read the line");
 
-                if reset.trim() == "y" {
-                    limit = 0;
-                    continue;
-                }else{
-                    break;
+                // if reset.trim() == "yes" || reset.trim() == "y" {
+                //    limit = 0;
+                //    continue;
+                // }else{
+                //    break;
+                // }
+                
+                match reset.trim().to_lowercase().as_str() {
+                    "yes" | "y" => {
+                        limit = 0;
+                        continue;
+                    }
+                    _ => { 
+                        break;
+                    },
                 }
             },
         }
